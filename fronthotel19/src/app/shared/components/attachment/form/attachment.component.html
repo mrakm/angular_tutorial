@@ -1,0 +1,140 @@
+<div>
+  <!-- <h3 class="heading">Attachment Required</h3> -->
+  <div fxLayout="column">
+    <div *ngIf="canUpload" class="file-input-outer-wrapper">
+      <div class="file-input-wrapper">
+        <span class="span-file-input">
+          <mat-icon class="mr-2">attachment</mat-icon>
+          <label>Choose Files</label>
+        </span>
+        <input *ngIf="single" type="file" ng2FileSelect [uploader]="uploader" [accept]="fileFilter" />
+        <input *ngIf="!single" type="file" ng2FileSelect [uploader]="uploader" multiple [accept]="fileFilter" />
+      </div>
+    </div>
+    <div *ngIf="uploader.queue.length > 0">
+      <mat-list>
+        <div fxLayout="row" class="pd-header">
+          <mat-list-item fxFlex="30">
+            <strong>Name</strong>
+          </mat-list-item>
+          <mat-list-item fxFlex="10">
+            <strong>Size</strong>
+          </mat-list-item>
+          <mat-list-item fxFlex="20">
+            <strong>Progress</strong>
+          </mat-list-item>
+          <mat-list-item fxFlex="10">
+            <strong>Status</strong>
+          </mat-list-item>
+          <mat-list-item fxFlex="30" fxLayout="row" fxLayoutAlign="end">
+            <strong>Actions</strong>
+          </mat-list-item>
+        </div>
+        <mat-divider class="mtd"></mat-divider>
+        <div>
+          <div fxLayout="column" *ngFor="let item of uploader.queue">
+            <div fxLayout="row" class="pd-row" fxLayoutAlign="space-between">
+              <mat-list-item fxFlex="30">
+                {{ item?.file?.name }}
+              </mat-list-item>
+
+              <mat-list-item fxFlex="10"> {{ item?.file?.size / 1024 / 1024 | number: '.2' }} MB </mat-list-item>
+
+              <mat-list-item fxFlex="20">
+                <mat-progress-bar mode="determinate" [value]="item.progress"></mat-progress-bar>
+              </mat-list-item>
+
+              <mat-list-item fxFlex="10">
+                <span *ngIf="item.isSuccess">
+                  <i class="material-icons">done</i>
+                </span>
+                <span *ngIf="item.isCancel">
+                  <i class="material-icons">block</i>
+                </span>
+                <span *ngIf="item.isError">
+                  <i class="material-icons">warning</i>
+                </span>
+              </mat-list-item>
+              <mat-list-item fxFlex="30" fxLayout="row" fxLayoutAlign="end">
+                <a
+                  mat-fab
+                  type="button"
+                  class="single-upload"
+                  (click)="item.upload()"
+                  [disabled]="item.isReady || item.isUploading || item.isSuccess"
+                  *ngIf="displayActionButtons"
+                  fxLayout="column"
+                  fxLayoutAlign="center"
+                >
+                  <mat-icon>file_upload</mat-icon>
+                </a>
+                <a
+                  mat-fab
+                  type="button"
+                  class="single-cancel"
+                  (click)="item.cancel()"
+                  [disabled]="!item.isUploading"
+                  *ngIf="displayActionButtons"
+                  fxLayout="column"
+                  fxLayoutAlign="center"
+                >
+                  <mat-icon>block</mat-icon>
+                </a>
+
+                <a mat-fab type="button" class="single-remove" (click)="item.remove()" fxLayout="column" fxLayoutAlign="center">
+                  <mat-icon>remove</mat-icon>
+                </a>
+              </mat-list-item>
+            </div>
+            <div>
+              <mat-error class="err" *ngIf="item['error'] && item['errorStatus'] === 403">Invalid file size. Max file size is {{ fileSize }}MB</mat-error>
+              <mat-error class="err" *ngIf="item['error'] && item['errorStatus'] === 400">Invalid file type.</mat-error>
+            </div>
+            <mat-divider class="mtd"></mat-divider>
+          </div>
+        </div>
+      </mat-list>
+      <div>
+        <div class="progress">
+          <span class="p-heading">
+            Progress
+          </span>
+
+          <div class="progress-bar">
+            <mat-progress-bar mode="determinate" [value]="uploader.progress"></mat-progress-bar>
+
+            <!-- <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div> -->
+          </div>
+        </div>
+        <div fxLayoutGap="4px">
+          <button
+            class="btn-soft"
+            mat-flat-button
+            type="button"
+            class="all-upload"
+            (click)="uploader.uploadAll()"
+            [disabled]="!uploader.getNotUploadedItems().length"
+            *ngIf="displayActionButtons"
+          >
+            <i class="material-icons">file_upload</i> Upload All
+          </button>
+          <button
+            class="btn-soft"
+            mat-flat-button
+            type="button"
+            class="all-cancel"
+            class="btn btn-warning btn-s"
+            (click)="uploader.cancelAll()"
+            [disabled]="!uploader.isUploading"
+            *ngIf="displayActionButtons"
+          >
+            <i class="material-icons">block</i> Cancel All
+          </button>
+          <button class="btn-soft" mat-flat-button type="button" class="all-remove" (click)="uploader.clearQueue()" [disabled]="!uploader.queue.length">
+            <i class="material-icons">remove</i> Remove All
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

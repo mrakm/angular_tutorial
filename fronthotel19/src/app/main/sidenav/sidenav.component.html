@@ -1,0 +1,17 @@
+<a mat-list-item (click)="onItemSelected(item)" [ngClass]="{ 'menu-active': isActive(item.url, item?.name) }">
+  <div class="box" style="width: 214px;">
+    <span *ngIf="isChild" [ngStyle]="{ 'margin-left': depth === 2 ? '40px' : '20px' }"></span>
+    <img class="img-menu-control mr-2 ml-1" src="{{ item?.imgSrc }}" />
+    {{ item.name }}
+    <span fxFlex *ngIf="item.children && item.children.length && !item.isConfiguration" fxLayoutAlign="end center">
+      <span fxFlex></span>
+      <mat-icon [@indicatorRotate]="expanded ? 'expanded' : 'collapsed'">
+        expand_more
+      </mat-icon>
+    </span>
+  </div>
+  <mat-divider></mat-divider>
+</a>
+<div *ngIf="expanded">
+  <app-sidenav *ngFor="let child of item.children" [item]="child" [depth]="depth + 1" [isChild]="true"></app-sidenav>
+</div>

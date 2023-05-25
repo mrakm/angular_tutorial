@@ -1,0 +1,61 @@
+#main-wrapper {
+  overflow: auto;
+}
+
+.sidebar-container {
+  height: calc(100vh - 64px); // 65px comes from the header height of a single-row mat-toolbar
+}
+
+.page-wrapper {
+  // min-width: 600px;
+  background-color: var(--background);
+  margin-left: 0 !important;
+  padding-bottom: 0;
+}
+
+.main-container {
+  height: calc(100vh - 161px); // 161px = 64 (header) + 40 (page title) + 55 (footer)
+  overflow-y: auto;
+  overflow-x: hidden !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 414px) {
+  .main-container {
+    height: calc(100vh - 64px);
+  }
+
+  .md {
+    display: none;
+  }
+}
+
+@media (min-width: 414px) {
+  .sm {
+    display: none;
+  }
+}
+
+::ng-deep aside.ng-sidebar {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.35);
+}
+
+.ng-sidebar--opened {
+  background: #ffffff !important;
+  top: 38px !important;
+}
+
+@media (max-width: 768px) {
+  .page-wrapper {
+    padding-top: 0;
+  }
+}
+
+.layout-spinner {
+  height: 100px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+}

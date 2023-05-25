@@ -1,0 +1,397 @@
+::ng-deep .notifications-menu-container {
+  max-width: 400px !important;
+}
+
+header {
+  .logo-bar {
+    height: 64px;
+    background: #2b283e;
+    display: flow-root;
+    align-items: center;
+    margin-left: -16px;
+  }
+
+  .logo-link {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: rgba(55, 71, 79, 0.87);
+  }
+
+  .logo-bar .logo-link {
+    border-top: 0px solid #f1ecec;
+    border-bottom: 0px solid #f1ecec;
+    padding: 2px 0px 2px 0px;
+  }
+
+  .logo-text {
+    vertical-align: middle;
+  }
+
+  .logo-short {
+    margin-left: 75px;
+    width: 31%;
+  }
+
+  // .logo-short:hover {
+  //   box-shadow: 0 0 16px rgba(0, 0, 0, 0.6);
+  // }
+
+  .logo-bar-dropdown {
+    height: 32px;
+    background: white;
+    align-items: center;
+    margin-left: -16px;
+  }
+
+  .billing-order {
+    cursor: pointer;
+
+    a {
+      display: flex;
+      align-items: center;
+
+      span {
+        margin-left: 5px;
+      }
+    }
+  }
+}
+
+.register-span {
+  margin-left: 3px;
+  margin-right: 3px;
+}
+
+.icon-button-min-width {
+  min-width: 20px;
+  margin: 0px 12px;
+}
+
+.notify {
+  position: relative;
+  top: -22px;
+  right: -9px;
+}
+
+.notify .heartbit {
+  position: absolute;
+  top: -24px;
+  right: -10px;
+  height: 20px;
+  width: 20px;
+  z-index: 10;
+  border: 5px solid #ef5350;
+  border-radius: 70px;
+  -moz-animation: heartbit 2s ease-out;
+  -moz-animation-iteration-count: infinite;
+  -o-animation: heartbit 2s ease-out;
+  -o-animation-iteration-count: infinite;
+  -webkit-animation: heartbit 2s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
+.notify .point {
+  width: 6px;
+  height: 6px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  background-color: #ef5350;
+  position: absolute;
+  right: 2px;
+  top: -12px;
+}
+
+.sidebar-select {
+  position: relative;
+  top: 2px;
+  background: white;
+  padding: 10px 13px 10px 13px;
+  z-index: 999;
+  border-bottom: 2px solid #f1ecec;
+  border-top: 2px solid #f1ecec;
+}
+
+.sidebar-select-dropdown {
+  position: relative;
+  background: white;
+  padding: 10px 13px 10px 13px;
+  z-index: 999;
+  border-bottom: 2px solid #f1ecec;
+  border-top: 2px solid #f1ecec;
+}
+
+@-moz-keyframes heartbit {
+  0% {
+    -moz-transform: scale(0);
+    opacity: 0;
+  }
+
+  25% {
+    -moz-transform: scale(0.1);
+    opacity: 0.1;
+  }
+
+  50% {
+    -moz-transform: scale(0.5);
+    opacity: 0.3;
+  }
+
+  75% {
+    -moz-transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  100% {
+    -moz-transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes heartbit {
+  0% {
+    -webkit-transform: scale(0);
+    opacity: 0;
+  }
+
+  25% {
+    -webkit-transform: scale(0.1);
+    opacity: 0.1;
+  }
+
+  50% {
+    -webkit-transform: scale(0.5);
+    opacity: 0.3;
+  }
+
+  75% {
+    -webkit-transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    opacity: 0;
+  }
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  .notify .heartbit {
+    position: absolute;
+    top: -22px;
+    right: -6px;
+    height: 20px;
+    width: 20px;
+    z-index: 10;
+    border: 5px solid #ef5350;
+    border-radius: 70px;
+    -moz-animation: heartbit 1s ease-out;
+    -moz-animation-iteration-count: infinite;
+    -o-animation: heartbit 1s ease-out;
+    -o-animation-iteration-count: infinite;
+    -webkit-animation: heartbit 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+
+  .notify .point {
+    width: 6px;
+    height: 6px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    background-color: #ef5350;
+    position: absolute;
+    right: 6px;
+    top: -10px;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .notify .heartbit {
+    position: absolute;
+    top: -24px;
+    right: -8px;
+    height: 25px;
+    width: 25px;
+    z-index: 10;
+    border: 5px solid #ef5350;
+    border-radius: 70px;
+    -moz-animation: heartbit 1s ease-out;
+    -moz-animation-iteration-count: infinite;
+    -o-animation: heartbit 1s ease-out;
+    -o-animation-iteration-count: infinite;
+    -webkit-animation: heartbit 1s ease-out;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+  }
+
+  .notify .point {
+    width: 6px;
+    height: 6px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    background-color: #ef5350;
+    position: absolute;
+    right: 6px;
+    top: -10px;
+  }
+}
+
+mat-toolbar {
+  @media (max-width: 768px) {
+    .mat-button {
+      width: auto;
+      min-width: auto;
+    }
+  }
+}
+
+@media (width: 768px) {
+  .sidebar-select-dropdown {
+    position: relative;
+    background: white;
+    padding: 18px 13px 10px 13px;
+    z-index: 999;
+    border-bottom: 2px solid #f1ecec;
+    border-top: 2px solid #f1ecec;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .register-span {
+    display: none;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  .hideForMobile {
+    display: none;
+  }
+
+  .icon-button-min-width-mobile {
+    min-width: 20px;
+    margin: 0px 0px;
+  }
+}
+
+@media (width: 360px) {
+  .icon-button-min-width-mobile {
+    min-width: 20px;
+    width: 75px;
+    margin: 0px 0px;
+  }
+}
+
+@media (width: 320px) {
+  .icon-button-min-width-mobile {
+    min-width: 20px;
+    width: 35px;
+    margin: 0px 0px;
+  }
+
+  .margin-cross {
+    margin-left: -10px;
+  }
+
+  .hideExit {
+    display: none;
+  }
+}
+
+// bootstrap classes
+
+.dropdown-header {
+  display: block;
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 0;
+  font-size: 0.875rem;
+  color: #6c757d;
+  white-space: nowrap;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mr-1 {
+  margin-right: 0.25rem !important;
+}
+
+.text-dark {
+  color: #67757c;
+}
+
+.mr-3 {
+  margin-right: 1rem !important;
+}
+
+.py-3 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+.px-0 {
+  padding-right: 0 !important;
+  padding-left: 0 !important;
+}
+
+// for IE only
+@media all and (-ms-high-contrast: none) {
+  .ie-close {
+    padding: 3px 0 0 0;
+  }
+}
+
+// for IE only
+@media all and (-ms-high-contrast: none) {
+  .notify {
+    display: none;
+  }
+}
+
+.header-direction {
+  flex-direction: column;
+}
+
+.img-menu-control {
+  width: 22px;
+  height: 100%;
+  filter: grayscale(100%);
+
+  &:hover {
+    filter: none;
+  }
+
+  + span {
+    vertical-align: middle;
+    display: inline-block;
+    margin-left: 8px;
+  }
+
+  &.active {
+    filter: none;
+  }
+}
+
+.menu-type {
+  width: 222px;
+  color: #607d8b;
+  font: 400 14px/20px Lato, Helvetica;
+  margin-right: -10px;
+}
+
+.optionDivorce {
+  background-size: 15px;
+  text-align: center;
+  text-align-last: center;
+}
+
+.optionDomesticViolence {
+  background-size: 15px;
+  text-align: center;
+  text-align-last: center;
+}

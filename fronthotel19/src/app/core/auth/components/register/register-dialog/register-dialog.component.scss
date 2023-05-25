@@ -1,0 +1,20 @@
+.close-container {
+  display: flex;
+  justify-content: flex-end;
+  .close-icon {
+    cursor: pointer;
+  }
+}
+
+.dialog-container {
+  max-height: 90vh;
+  overflow: auto;
+  margin: -24px;
+  padding: 24px;
+}
+
+@media only screen and (max-width: 600px) {
+  .dialog-container {
+    padding: 8px;
+  }
+}

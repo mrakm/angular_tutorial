@@ -1,0 +1,22 @@
+span {
+    padding-left: 16px;
+  
+  }
+
+.dropdown-item {
+    display: block;
+    clear: both;
+    font-weight: 400;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+    padding: 8px 1rem;
+    color: #67757c; 
+  }
+
+  .dropdown-item:focus, .dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #f8f9fa;
+}

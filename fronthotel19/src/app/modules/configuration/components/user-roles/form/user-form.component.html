@@ -1,0 +1,87 @@
+<div class="wrapper">
+  <div *ngIf="isLoading" class="c-overlay">
+    <mat-spinner [diameter]="30" mode="indeterminate"></mat-spinner>
+  </div>
+  <mat-card *ngIf="!isLoading">
+    <mat-card-content>
+      <form novalidate [formGroup]="fg" fxLayout="column" fxLayoutGap="10px" (ngSubmit)="saveData(fg.value)">
+        <!-- <mat-radio-group aria-label="Select an option" fxLayoutGap="10px" formControlName="userType" (change)="changeType()">
+          <mat-radio-button value="Employee">Employee</mat-radio-button>
+          <mat-radio-button value="Contractor">Contractor</mat-radio-button>
+        </mat-radio-group> -->
+        <!-- <div *ngIf="fg.get('userType')?.value === 'Employee'">
+          <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field fxFlex="100">
+              <mat-label>User</mat-label>
+              <mat-select formControlName="employeeId">
+                <mat-select-search [noEntriesFoundLabel]="'No match found'" formControlName="employeeFilterCtrl"> </mat-select-search>
+                <mat-option *ngFor="let employee of filteredEmployee | async" [value]="employee.id">
+                  <div fxLayout="column">
+                    {{ employee?.firstName + ' ' + employee.lastName + ' ' }}
+                    <small> {{ employee?.cnic }}</small>
+                  </div>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div> -->
+        <!-- <div *ngIf="fg.get('userType')?.value === 'Contractor'">
+          <div fxLayout="row" fxLayoutGap="10px">
+            <mat-form-field fxFlex="100">
+              <mat-label>Contractor</mat-label>
+              <mat-select formControlName="contractorId">
+                <mat-select-search [noEntriesFoundLabel]="'No match found'" formControlName="contractorFilterCtrl"> </mat-select-search>
+                <mat-option *ngFor="let contractor of filteredContractors | async" [value]="contractor.id">
+                  <div fxLayout="column">
+                    {{ contractor?.name }}
+                  </div>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div> -->
+
+        <div fxLayout="row" fxLayoutGap="10px">
+          <mat-form-field fxFlex="50">
+            <input matInput [placeholder]="componentLabels.userName" formControlName="userName" (keyup)="isUserExist()" required [autofocus]="true" />
+            <mat-error *ngIf="fg.get('userName').hasError('required')">{{ componentLabels.userName }} is required. </mat-error>
+            <mat-error *ngIf="fg.get('userName').hasError('email')">{{ componentLabels.userName }} does not match email format. </mat-error>
+            <mat-error *ngIf="fg.get('userName').hasError('is-exist')">{{ componentLabels.userName }} is already exist. </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="50">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="roleId" placeholder="Role">
+              <mat-select-search [noEntriesFoundLabel]="'No match found'" formControlName="roleFilterCtrl"> </mat-select-search>
+              <mat-option *ngFor="let role of filteredRole | async" [value]="role.id">
+                <div fxLayout="column">
+                  {{ role?.name }}
+                </div>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutGap="10px" *ngIf="pageAct === 'create'">
+          <mat-form-field fxFlex="50">
+            <input type="password" matInput [placeholder]="componentLabels.password" formControlName="password" />
+            <mat-error *ngIf="fg.get('password').hasError('required')">{{ componentLabels.password }} is required. </mat-error>
+          </mat-form-field>
+
+          <mat-form-field fxFlex="50">
+            <input type="password" matInput [placeholder]="componentLabels.confirmPassword" (keyup)="isEqual()" formControlName="confirmPassword" />
+            <mat-error *ngIf="fg.get('confirmPassword').hasError('required')">{{ componentLabels.confirmPassword }} is required </mat-error>
+            <mat-error *ngIf="fg.get('confirmPassword').hasError('not-equal')"> Password did not match</mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50">
+          <mat-checkbox formControlName="isActive">{{ componentLabels.isActive }}</mat-checkbox>
+        </div>
+
+        <div fxLayoutGap="8px">
+          <button class="btn-soft" mat-flat-button type="submit"  color="primary">Save</button>
+          <a color="accent" class="btn-soft" mat-flat-button [routerLink]="['/a/configuration/users']" color="accent">Cancel</a>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

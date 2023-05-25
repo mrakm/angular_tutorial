@@ -1,0 +1,13 @@
+<div class="page-titles mb-0 p-3">
+  <div class="align-self-center">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" [ngClass]="{ active: i == breadCrumbs.length - 1 }" *ngFor="let breadCrumb of breadCrumbs; let i = index">
+        <a routerLink="{{ breadCrumb?.url }}" *ngIf="i !== breadCrumbs.length - 1" [class.disabled]="breadCrumb?.url === '#' ? true : null">
+          {{ breadCrumb?.title }}
+        </a>
+        <span *ngIf="i == breadCrumbs.length - 1">{{ breadCrumb?.title | translate: breadCrumb.params }}</span>
+      </li>
+    </ol>
+  </div>
+  <div class="align-self-center"></div>
+</div>

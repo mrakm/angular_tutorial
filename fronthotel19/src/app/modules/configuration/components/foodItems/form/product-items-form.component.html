@@ -1,0 +1,46 @@
+<h1 mat-dialog-title>{{ actionBtn === "Save" ? "Create" : "Update" }} Food Item</h1>
+<div class="wrapper" mat-dialog-content>
+  <form [formGroup]="fg">
+    <div fxLayout="row" fxLayoutGap="16px">
+      <mat-form-field appearance="outline">
+        <mat-label> Food Name</mat-label>
+        <input formControlName="foodItemName" matInput placeholder="Type Here" required />
+        <mat-error *ngIf="fg.get('foodItemName').hasError('required')">
+          Food Name is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Select Food Category</mat-label>
+        <mat-select formControlName="foodCategoryId">
+          <mat-option *ngFor="let item of foodCategoryData" [value]="item.id">
+            {{ item.foodCategoryName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div fxLayout="row">
+      <mat-form-field appearance="outline">
+        <mat-label> price</mat-label>
+        <input formControlName="price" matInput placeholder="Type Here" required />
+        <mat-error *ngIf="fg.get('price').hasError('required')">
+          Price is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutGap="16px" class="margin">
+      <mat-form-field appearance="outline">
+        <textarea matInput placeholder="Add details of food" formControlName="description"> </textarea>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
+<div mat-dialog-action [align]="'end'" [style.margin-top]="'10px'" fxLayoutGap="4px">
+  <button class="btn-soft" mat-flat-button color="primary" (click)="saveProductItem()">
+    {{ actionBtn }}
+  </button>
+  <button class="btn-soft" mat-flat-button color="warn" mat-dialog-close>
+    Close
+  </button>
+</div>

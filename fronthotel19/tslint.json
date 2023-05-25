@@ -1,0 +1,17 @@
+{
+  "rulesDirectory": ["node_modules/codelyzer"],
+  "extends": ["angular-tslint-rules"],
+  "rules": {
+    "max-line-length": [true, 160],
+    "newline-per-chained-call": false,
+    "no-empty": [true, "allow-empty-functions"],
+    "no-floating-promises": false,
+    "no-implicit-dependencies": [true, ["src", "app"]],
+    "prefer-conditional-expression": false,
+    "template-i18n": [false],
+    "no-void-expression": false
+  },
+  "linterOptions": {
+    "exclude": ["bin", "build", "config", "coverage", "node_modules", "src/app/public/*", "src/assets/*", "src/main.ts", "src/polyfills.ts", "src/test.ts"]
+  }
+}

@@ -1,0 +1,53 @@
+<mat-card class="my-1" fxLayout-="column">
+  <div fxLayout="row" fxLayoutGap="10px" class="wrapper">
+    <mat-icon>attachment</mat-icon>
+    <h4>{{ formValues["label"] ? formValues["label"] : "Upload Documents" }}</h4>
+  </div>
+  <div *ngIf="formValues['displayInList'] || (formValues['footSteps'] && numberOfAttachedFiles < 1)">
+    <shared-attachment
+      [canUpload]="canUpload"
+      [fileSize]="formValues['fileSize']"
+      [fileFilter]="formValues['fileFilter']"
+      [parent]="formValues['parent']"
+      [parentId]="formValues['parentId']"
+      [single]="formValues['footSteps'] ? true : false"
+      [displayActionButtons]="formValues['displayActionButtons']"
+      [navigate]="formValues['navigate']"
+      [triggerUpload]="formValues['triggerUpload']"
+    >
+    </shared-attachment>
+  </div>
+
+  <div class="custom-table" *ngIf="numberOfAttachedFiles > 0">
+    <div class="custom-mat-table" class="mat-elevation-z8">
+      <div class="custom-mat-header-row mt-2">
+        <div class="custom-mat-header-cell" fxFlex="35">{{ attrLabels["fileMeta"] }}</div>
+        <div class="custom-mat-header-cell" fxFlex="15">{{ attrLabels["fileType"] }}</div>
+        <div class="custom-mat-header-cell" fxFlex="15">{{ attrLabels["createdAt"] }}</div>
+        <div class="custom-mat-header-cell" fxFlex="20">{{ attrLabels["createdBy"] }}</div>
+        <div class="custom-mat-header-cell" fxFlex="15"></div>
+      </div>
+      <div class="custom-mat-row" *ngFor="let element of data">
+        <div class="custom-mat-cell" fxFlex="35">{{ element["fileMeta"] }}</div>
+        <div class="custom-mat-cell" fxFlex="15">{{ element["fileType"].substring(element["fileType"].lastIndexOf("/") + 1, element["fileType"].length) }}</div>
+        <div class="custom-mat-cell" fxFlex="15">
+          {{ element["createdAt"] | date: "dd-MM-yyyy" }}
+        </div>
+        <div class="custom-mat-cell" fxFlex="20">
+          {{ element?.createdUsers?.userName ? element?.createdUsers?.userName : "N/A" }}
+        </div>
+        <div class="custom-mat-cell" fxFlex="15" style="text-align: center;">
+          <a *ngIf="canView" mat-icon-button (click)="open(element.id)" matTooltip="View">
+            <mat-icon color="primary">visibility_outline</mat-icon>
+          </a>
+          <a *ngIf="canView" mat-icon-button (click)="download(element.id, element['originalName'])" matTooltip="Download">
+            <mat-icon color="accent">arrow_downward_outline</mat-icon>
+          </a>
+          <a mat-icon-button *ngIf="canDelete" (click)="delete(element.id)" matTooltip="Delete">
+            <mat-icon color="warn">delete_outline</mat-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-card>

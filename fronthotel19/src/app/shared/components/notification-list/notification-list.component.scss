@@ -1,0 +1,65 @@
+.mark-as-read {
+  background: var(--neutral-9);
+  border-radius: 50%;
+  width: 4px !important;
+  height: 4px !important;
+  display: table;
+  margin: 0 auto;
+  padding: 2px;
+  cursor: pointer;
+}
+
+.read {
+  background-color: var(--neutral-2);
+}
+
+.noti-menu {
+  cursor: pointer;
+}
+
+mat-list-item .mat-list-item-content {
+  flex-wrap: wrap;
+}
+
+mat-list-item.mat-list-item.notification-wrapper {
+  height: auto !important;
+  box-sizing: border-box;
+  h4 {
+    padding: 4px 0 0 0 !important;
+  }
+}
+
+.notification-wrapper .mat-list-text {
+  padding: 0 !important;
+  p {
+    opacity: 0.8;
+    padding: 4px 0 0 0 !important;
+    margin: 0;
+  }
+}
+
+.on-hover-archive {
+  visibility: hidden;
+  flex-direction: column !important;
+  z-index: 8;
+  padding-left: 4px;
+}
+
+.notification-wrapper:hover .on-hover-archive {
+  visibility: visible;
+}
+
+mat-list-item:hover {
+  background: var(--neutral-3);
+}
+
+.notification-buttons {
+  padding: 8px 0px !important;
+}
+
+.read-notification {
+  border: 2px solid;
+  padding: 0px;
+  visibility: visible;
+  background-color: transparent;
+}

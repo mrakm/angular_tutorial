@@ -1,0 +1,105 @@
+<mat-card [style.box-shadow]="'none'">
+  <mat-card-header [style.justify-content]="'center'" class="mb-4 text-center">
+    <mat-card-title class="uppercase">REGISTER YOUR ACCOUNT</mat-card-title>
+    <mat-card-subtitle *ngIf="infoMessage" class="text-center my-5">
+      <div class="text-primary">
+        <strong>{{ infoMessage | translate }}</strong>
+      </div>
+    </mat-card-subtitle>
+    <mat-card-subtitle class="text-center">
+      <div data-cy="register-alert-text" *ngIf="alertText" class="text-warn">
+        {{ alertText }}
+      </div>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form
+      [formGroup]="signUpForm"
+      (ngSubmit)="signUp()"
+      fxLayout="column"
+      fxLayoutGap="8px"
+      fxLayoutAlign="start stretch"
+    >
+      <mat-form-field class="email">
+        <input
+          data-cy="signup-email"
+          matInput
+          required
+          placeholder="Email"
+          autocomplete="on"
+          type="email"
+          name="email"
+          formControlName="email"
+        />
+        <mat-error
+          *ngIf="
+            form.email.hasError('email') && !form.email.hasError('required')
+          "
+        >
+          Email is invalid.
+        </mat-error>
+        <mat-error *ngIf="form.email.hasError('required')">
+          Email is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="password">
+        <input
+          data-cy="signup-pass"
+          matInput
+          required
+          placeholder="Password"
+          type="password"
+          name="password"
+          formControlName="password"
+        />
+        <mat-error *ngIf="form.password.hasError('required')">
+          Password is required.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="confirm-password">
+        <input
+          data-cy="signup-confirm"
+          matInput
+          required
+          placeholder="Confirm Password"
+          type="password"
+          formControlName="confirmPassword"
+        />
+        <mat-error *ngIf="form.confirmPassword.hasError('required')">
+          Confirming the password is required.
+        </mat-error>
+        <mat-error
+          *ngIf="
+            form.confirmPassword.hasError('match') &&
+            !form.confirmPassword.hasError('required')
+          "
+        >
+          Passwords don't match.
+        </mat-error>
+      </mat-form-field>
+
+      <div class="mt-4" fxLayout fxLayoutAlign="center">
+        <button
+          data-cy="register-btn"
+          mat-flat-button
+          color="accent"
+          class="uppercase btn-soft register-button"
+          [disabled]="!signUpForm?.valid || registerInProgress"
+        >
+          REGISTER
+        </button>
+      </div>
+
+      <div class="mt-2 mb-0" *ngIf="!hideLogin" fxLayout fxLayoutAlign="center">
+        <div class="already-have-account">
+          Already have an account?
+          <a routerLink="/auth/login" class="ml-1">
+            <span (click)="signIn($event)"><strong>Login</strong></span>
+          </a>
+        </div>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

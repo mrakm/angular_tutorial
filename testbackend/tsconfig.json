@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "es6",
+    "moduleResolution": "node",
+    "esModuleInterop": false,
+    "skipLibCheck": true
+  }
+}

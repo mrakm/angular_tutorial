@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>
+  {{ title }}
+</h1>
+
+<div mat-dialog-content>
+  <p *ngIf="appData?.length == 0">{{ message }}</p>
+  
+  <div *ngIf="appData?.length" style="padding-bottom: 12px;">
+    <p>This plan is associated with following applications. If you really want to delete this plan then remove associations firstly.</p>
+    
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" (matSortChange)="sortData()">
+      <ng-container matColumnDef="applicationFormNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header class="list-header" tabindex="-1">Application Reg No</th>
+        <td mat-cell *matCellDef="let element">{{ element.applicationFormNumber }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="options">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element" style="text-align: right;">
+          <a mat-icon-button (click)="delete(element.id)" matTooltip="Remove association" color="warn">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <div>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns" class="hover-effect"></tr>
+      </div>
+    </table>
+
+    <mat-paginator class="mat-elevation-z8" [length]="appData?.length" [pageSize]="5"
+      [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true"></mat-paginator>
+  </div>
+
+
+</div>
+
+<div mat-dialog-actions align="end">
+  <button [disabled]="appData?.length > 0" data-cy="confirm-delete" class="btn-soft" mat-flat-button color="primary" (click)="onConfirm()">Yes</button>
+  <button class="btn-soft" mat-flat-button (click)="onDismiss()">No</button>
+</div>

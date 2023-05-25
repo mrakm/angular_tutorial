@@ -1,0 +1,53 @@
+footer.footer {
+  bottom: inherit;
+  position: inherit;
+}
+
+.copyright {
+  width: 100%;
+
+  a.copyright-link {
+    color: var(--base);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .mini-sidebar .footer {
+    left: 60px;
+  }
+}
+
+@media (max-width: 1023px) {
+  .footer {
+    left: 60px;
+  }
+}
+
+.footer {
+  bottom: 0;
+  color: #67757c;
+  left: 0;
+  padding: 12px;
+  position: absolute;
+  right: 0;
+  border-top: 1px solid rgba(120, 130, 140, 0.13);
+  background: #fff;
+}
+
+@media (max-width: 767px) and (min-width: 414px) {
+  footer.footer {
+    bottom: 0;
+    position: fixed;
+  }
+}
+
+// for IE only, --var doesn't work
+@media all and (-ms-high-contrast: none) {
+  a.copyright-link {
+    color: #37474f;
+  }
+}

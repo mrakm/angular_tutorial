@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+
+  db:
+    image: postgis/postgis:13-3.0-alpine
+    ports:
+      - 5432:5432
+    volumes:
+      - db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: pass2word
+      POSTGRES_USER: postgres
+      POSTGRES_DB: falettis
+
+
+volumes:
+  db:
+

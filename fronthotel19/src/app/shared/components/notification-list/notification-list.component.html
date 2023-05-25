@@ -1,0 +1,93 @@
+<mat-list data-cy="message-center" class="message-center">
+  <mat-list-item
+    class="notification-wrapper"
+    *ngFor="let notification of notifications; index as i"
+    [attr.data-cy]="'notification-' + i"
+    [ngClass]="{ read: !notification.is_read }"
+    (click)="navigate(notification.type)"
+  >
+    <h4 mat-line>
+      <div fxLayout="row" fxLayoutGap="4px" *ngIf="notification.type === 'InviteNotification'">
+        <mat-icon color="primary">person_add</mat-icon>
+        <h3 class="mb-0">Invite</h3>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutGap="4px"
+        *ngIf="notification.type === 'TextNotification' && isDeletedAccount(notification.message) && !isAcceptedInvitaion(notification.message)"
+      >
+        <mat-icon color="primary">delete_forever</mat-icon>
+        <h3 class="mb-0">Account deleted</h3>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutGap="4px"
+        *ngIf="notification.type === 'TextNotification' && !isDeletedAccount(notification.message) && !isAcceptedInvitaion(notification.message)"
+      >
+        <mat-icon color="primary">transfer_within_a_station</mat-icon>
+        <h3 class="mb-0">Transfer</h3>
+      </div>
+      <div
+        fxLayout="row"
+        fxLayoutGap="4px"
+        *ngIf="notification.type === 'TextNotification' && !isDeletedAccount(notification.message) && isAcceptedInvitaion(notification.message)"
+      >
+        <mat-icon color="primary">check_circle</mat-icon>
+        <h3 class="mb-0">Invitation accepted</h3>
+      </div>
+      <div fxLayout="row" fxLayoutGap="4px" *ngIf="notification.type === 'Pusher::PusherNotification'">
+        <mat-icon color="primary">message</mat-icon>
+        <h3 class="mb-0">New message</h3>
+      </div>
+      <span [innerHTML]="notification?.message" class="white-space-initial"></span>
+    </h4>
+    <p mat-line>{{ timeSince(notification.updated_at) }}</p>
+    <div mat-line fxLayoutGap="4px" class="notification-buttons">
+      <button
+        mat-stroked-button
+        data-cy="noti-reject-btn"
+        color="basic"
+        *ngIf="showInviteAcceptReject(notification)"
+        (click)="rejectInvite(notification, $event)"
+        type="button"
+        class="btn-soft"
+      >
+        Reject
+      </button>
+      <button
+        mat-stroked-button
+        data-cy="noti-accept-btn"
+        class="btn-soft"
+        color="accent"
+        *ngIf="showInviteAcceptReject(notification)"
+        (click)="acceptInvite(notification, $event)"
+        type="button"
+      >
+        Accept
+      </button>
+      <span *ngIf="!showInviteAcceptReject(notification); else elseBlock">
+        <h4 class="mb-0" *ngIf="notification?.invite_status" translate="{{ notification?.invite_status }}"></h4>
+      </span>
+    </div>
+    <div fxLayout="col" fxLayoutGap="4px" class="on-hover-archive">
+      <mat-icon class="noti-menu" mat-list-icon [matMenuTriggerFor]="menu" clickStopPropagation>more_horiz</mat-icon>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="archiveNotification(notification, i)">Archive</button>
+      </mat-menu>
+      <div
+        *ngIf="!notification.is_read"
+        class="mark-as-read"
+        [ngClass]="{ 'read-notification': !notification.is_read }"
+        [matTooltip]="notification.is_read ? 'Mark as Unread' : 'Mark as Read'"
+        clickStopPropagation
+        (click)="readInvite(notification)"
+      ></div>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
+
+<div class="text-center my-4" *ngIf="!this.hidePagination">
+  <button mat-button [disabled]="pageNumber === 1" (click)="previousPage()">Previous</button>
+  <button mat-button [disabled]="isLastPage()" (click)="nextPage()">Next</button>
+</div>

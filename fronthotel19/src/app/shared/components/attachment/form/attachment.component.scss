@@ -1,0 +1,150 @@
+.my-drop-zone {
+  border: dotted 3px lightgray;
+}
+
+.nv-file-over {
+  border: dotted 3px red;
+}
+
+/* Default class applied to drop zones on over */
+.another-file-over-class {
+  border: dotted 3px green;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+/* For Select file  */
+.file-input-wrapper {
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 4px;
+  background-color: #1851d5;
+  color: white;
+}
+input[type='file'] {
+  opacity: 0;
+}
+
+.file-input-wrapper > input[type='file'] {
+  position: absolute;
+  width: 120px;
+  height: 40px;
+  top: 0;
+  right: 0;
+  left: 0;
+  opacity: 0;
+}
+
+.file-input-wrapper > .span-file-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 40px;
+}
+
+.file-input-wrapper:hover > .span-file-input {
+  background-color: #1851d5;
+  cursor: pointer !important;
+}
+
+.file-input-outer-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+  top: 10px;
+  right: 10px;
+}
+
+/* TODO:low should not be custom font size */
+.pd-header > mat-list-item {
+  font-size: 14px;
+  font-style: bold;
+}
+
+.pd-row > mat-list-item {
+  font-size: 12px;
+}
+
+.pd-row > div > span {
+  font-size: 12px;
+  text-align: center;
+}
+
+.progress-bar {
+  padding: 10px;
+}
+
+.heading {
+  margin: 0px 0px 10px 0px;
+}
+
+.single-upload {
+  background-color: #4caf50;
+  color: white;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 5px;
+}
+
+.single-cancel {
+  background-color: #ff9100;
+  color: white;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 5px;
+}
+
+.single-remove {
+  background-color: #f44336;
+  color: white;
+  border-radius: 50px;
+  width: 35px;
+  height: 35px;
+  margin: 5px;
+}
+
+.all-upload {
+  background-color: #4caf50;
+  color: white;
+}
+
+.all-cancel {
+  background-color: #ff9100;
+  color: white;
+}
+
+.all-remove {
+  background-color: #f44336;
+  color: white;
+}
+
+.progress {
+  padding-top: 20px;
+}
+
+.err {
+  font-size: 11px;
+}
+
+.p-heading {
+  padding-left: 15px;
+}
+
+.a-actions {
+  text-align: end;
+}
+
+.mtd {
+  position: relative !important;
+}

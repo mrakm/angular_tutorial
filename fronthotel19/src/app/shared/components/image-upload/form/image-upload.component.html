@@ -1,0 +1,21 @@
+<div *ngIf="isLoading" class="c-overlay">
+  <mat-spinner [diameter]="30" mode="indeterminate"></mat-spinner>
+</div>
+<div fxLayout="column" *ngIf="!isLoading">
+  <div class="imageDisplay" [style.background-image]="localImageUrl">
+    <div class="image-input" [ngStyle]="{ display: localImageUrl ? 'none' : 'inline' }">
+      <input #fileInput type="file" ng2FileSelect [uploader]="uploader" [accept]="fileFilter" />
+    </div>
+  </div>
+  <div fxLayout="row" style="margin-top: 5px;" fxLayoutAlign="center center">
+    <a class="btn-soft" mat-flat-button color="primary" (click)="fileInput.click()" matTooltip="{{ localImageUrl ? 'Update Image' : 'Upload Image' }}">{{
+      localImageUrl ? 'Update' : 'Upload'
+    }}</a>
+    <a mat-icon-button (click)="delete()" matTooltip="Delete Image" *ngIf="localImageUrl">
+      <mat-icon color="warn">delete</mat-icon>
+    </a>
+  </div>
+</div>
+<!-- <mat-icon [matTooltip]=" localImageUrl ? 'Update image': 'Upload image'" class="picIcon" (click)="fileInput.click()">
+  {{localImageUrl ? "edit_outline" : "add_photo_alternate"}}
+</mat-icon> -->

@@ -1,0 +1,55 @@
+<div id="main-wrapper">
+  <app-header></app-header>
+  <ng-sidebar-container class="sidebar-container">
+    <!-- A sidebar -->
+    <ng-sidebar
+      [sidebarClass]="'menu-sidebar'"
+      [(opened)]="opened"
+      [mode]="mode"
+      [dock]="dock"
+      [dockedSize]="'0px'"
+      [showBackdrop]="false"
+      [closeOnClickBackdrop]="closeOnClickBackdrop"
+      [closeOnClickOutside]="closeOnClickOutside"
+      (openedChange)="onSidebarOpenedChange($event)"
+      (onClosed)="_onClosed()"
+      position="start"
+    >
+      <mat-nav-list>
+        <app-sidenav *ngFor="let item of menuItems" [item]="item"></app-sidenav>
+      </mat-nav-list>
+    </ng-sidebar>
+    <!-- Configuration SideBar sidebar -->
+    <ng-sidebar
+      [sidebarClass]="'menu-sidebar'"
+      [(opened)]="configOpened"
+      [mode]="mode"
+      [showBackdrop]="false"
+      [closeOnClickBackdrop]="closeOnClickBackdrop"
+      [closeOnClickOutside]="closeOnClickOutside"
+      (openedChange)="onSidebarConfigOpenedChange($event)"
+      (onClosed)="_onClosed()"
+      position="end"
+    >
+      <app-sidenav-config></app-sidenav-config>
+    </ng-sidebar>
+    <!-- Page content -->
+    <div ng-sidebar-content>
+      <div class="page-wrapper">
+        <app-page-title class="md"></app-page-title>
+        <div class="container-fluid main-container">
+          <app-page-title class="sm"></app-page-title>
+          <router-outlet> </router-outlet>
+          <div class="layout-spinner" fxLayout="column" fxLayoutAlign="center center" *ngIf="spinnerInfo?.isLoading">
+            <mat-spinner class="m-2" *ngIf="spinnerInfo?.isLoading" [diameter]="30"></mat-spinner>
+            <span *ngIf="spinnerInfo?.isLoading">
+              <h3>{{ spinnerInfo?.isLoadingText }}</h3>
+            </span>
+          </div>
+          <app-footer class="sm footer"></app-footer>
+        </div>
+        <app-footer class="md"></app-footer>
+      </div>
+    </div>
+  </ng-sidebar-container>
+</div>

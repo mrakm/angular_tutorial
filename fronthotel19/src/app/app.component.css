@@ -1,0 +1,9 @@
+.offline {
+  height: 2vh;
+  background-color: #d60000;
+  text-align: center;
+  padding: 4px;
+  color: white;
+  position: absolute;
+  width: -webkit-fill-available;
+}

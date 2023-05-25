@@ -1,0 +1,18 @@
+:host {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.auth-landing-container {
+  width: 450px;
+  padding: 16px;
+
+  ::ng-deep .mat-card {
+    padding: 64px;
+  }
+}

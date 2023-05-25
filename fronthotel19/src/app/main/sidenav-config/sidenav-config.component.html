@@ -1,0 +1,33 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center">
+  <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="4px" fxFlex="50">
+    <mat-icon>settings</mat-icon>
+    <span style="font-size: medium">Configurations</span>
+  </div>
+  <div fxLayout="row" fxFlex="50" fxLayoutAlign="end center">
+    <button mat-icon-button (click)="closeSideBar()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+<div *ngIf="opened">
+  <mat-nav-list>
+    <div *ngFor="let parent of menuItems">
+      <a mat-list-item (click)="onItemSelected(parent)" [ngClass]="{ 'menu-active': isActive(parent.url, parent?.name) }">
+        <div class="box">
+          <span *ngIf="isChild" [ngStyle]="{ 'margin-left': depth === 2 ? '40px' : '20px' }"></span>
+          <img class="img-menu-control mr-3 ml-1" src="{{ parent?.imgSrc }}" /> {{ parent.name }}
+          <span fxFlex *ngIf="parent.children && parent.children.length && !parent.isConfiguration" fxLayoutAlign="end center">
+            <span fxFlex></span>
+            <mat-icon [@indicatorRotate]="parent.expanded ? 'expanded' : 'collapsed'">
+              expand_more
+            </mat-icon>
+          </span>
+        </div>
+        <mat-divider></mat-divider>
+      </a>
+      <div *ngIf="parent.expanded">
+        <app-sidenav *ngFor="let child of parent.children" [item]="child" [depth]="depth + 1" [isChild]="true"></app-sidenav>
+      </div>
+    </div>
+  </mat-nav-list>
+</div>

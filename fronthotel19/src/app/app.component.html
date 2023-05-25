@@ -1,0 +1,3 @@
+<ngx-loading-bar [includeSpinner]="false"></ngx-loading-bar>
+<div class="offline" *ngIf="!connectionStatus" @fade>Offline! Please check your internet connection.</div>
+<router-outlet></router-outlet>

@@ -1,0 +1,103 @@
+<mat-toolbar style="background-color: #f3760f;">
+  <header style="margin-top: auto;">
+    <div
+      fxHide
+      fxShow.gt-sm
+      class="logo-bar"
+      [ngClass]="{ 'header-direction': sidenavService.isSideNavOpened }"
+      [style.width]="sidenavService.isSideNavOpened ? '0px' : '245px'"
+    >
+      <a class="logo-link" (click)="gotoDashboard()">
+        <img src="assets/logo.png" alt="homepage" class="logo-short" />
+      </a>
+    </div>
+  </header>
+  <button data-cy="button-menu-toggler" mat-icon-button (click)="handleFixToggler()" class="button-menu-toggler">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <div fxFlex fxLayout fxLayoutAlign="flex-end">
+    <div fxLayout="row" class="mr-3" fxLayoutGap="6px">
+    
+      <span class="text-white">{{ selectedProject }}</span>
+    </div>
+    <button
+      [ngClass]="{ hideForMobile: sidenavService.isSideNavOpened && domesticViolenceSelected }"
+      data-cy="account-btn"
+      class="px-0 icon-button-min-width"
+      mat-button
+      [matMenuTriggerFor]="beforeUserMenu"
+    >
+      <ng-container *ngIf="(currentUser$ | async)?.user?.userName; else guestNavTemplate">
+        <mat-icon>person_pin</mat-icon>
+      </ng-container>
+      <ng-template #guestNavTemplate>
+        <mat-icon>person_pin</mat-icon>
+      </ng-template>
+    </button>
+    <mat-menu #beforeUserMenu="matMenu" xPosition="before">
+      <button data-cy="user-guest-display" mat-menu-item class="user-guest-display">
+        <ng-container *ngIf="(currentUser$ | async)?.user?.userName; else guestTemplate">
+          <p>{{ (currentUser$ | async)?.user.userName }}</p>
+        </ng-container>
+        <ng-template #guestTemplate>
+          <h4 class="mb-0">Guest</h4>
+        </ng-template>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="resetPassword()" class="settings-button">
+        <mat-icon class="mr-1">vpn_key</mat-icon>
+        <span>Reset Password</span>
+      </button>
+      <!-- <button mat-menu-item class="settings-button">
+        <mat-icon class="mr-1">message</mat-icon>
+        <span>Messages</span>
+      </button> -->
+      <button data-cy="logout-btn" mat-menu-item (click)="logout()" data-method="delete" rel="nofollow" style="cursor:pointer" class="logout-button">
+        <mat-icon class="mr-1">power_settings_new</mat-icon>
+        <span> Logout</span>
+      </button>
+    </mat-menu>
+
+    <!-- <button
+      [ngClass]="{ hideForMobile: sidenavService.isSideNavOpened || isGuestUser() }"
+      mat-button
+      class="px-0 icon-button-min-width language-button"
+      [matMenuTriggerFor]="beforeFlagMenu"
+    >
+      <i class="flag-icon flag-icon-{{ flagName }}"></i>
+    </button>
+
+    <mat-menu [ngClass]="{ hideForMobile: sidenavService.isSideNavOpened }" #beforeFlagMenu="matMenu" xPosition="before" #menu1="matMenu">
+      <app-translation></app-translation>
+    </mat-menu> -->
+
+    <!-- <button
+      [ngClass]="{ hideForMobile: sidenavService.isSideNavOpened }"
+      data-cy="notification-btn"
+      mat-button
+      class="px-0 icon-button-min-width notification-button"
+      [matMenuTriggerFor]="beforeNotificationMenu"
+    > -->
+    <!-- <button data-cy="notification-btn" mat-button class="px-0 icon-button-min-width notification-button" [matMenuTriggerFor]="beforeNotificationMenu">
+      <mat-icon>
+        notification_important
+      </mat-icon>
+      <div class="notify" *ngIf="hasUnreadNotifications">
+        <span class="heartbit"></span>
+        <span class="point"></span>
+      </div>
+    </button> -->
+    <mat-menu class="notifications-menu-container" #beforeNotificationMenu="matMenu" xPosition="before">
+      <div class="dropdown-header text-dark py-3">
+        Notifications
+      </div>
+      <mat-divider></mat-divider>
+      <app-notification (notificationChangeEvent)="onNotificationChangeEvent($event)"> </app-notification>
+    </mat-menu>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- Profile -->
+  <!-- ============================================================== -->
+</mat-toolbar>
